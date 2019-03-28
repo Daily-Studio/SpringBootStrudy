@@ -19,8 +19,13 @@ public class TestController {
     }
 
     @GetMapping("/path/{parameter}")
-    public String parameter(@PathVariable("parameter") String output) {
+    public String pathVariable(@PathVariable("parameter") String output) {
         return output;
+    }
+
+    @GetMapping("/path")
+    public String parameter(@RequestParam("no") String number) {
+        return "번호는" + number;
     }
 
     @PostMapping("/post")
