@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.dailystudio.springbootstudy.dto.user.UserInfoResDto;
+import org.dailystudio.springbootstudy.dto.user.UserNameReqDto;
 import org.dailystudio.springbootstudy.dto.user.UserSaveReqDto;
 import org.dailystudio.springbootstudy.service.UserService;
 import org.springframework.http.ResponseEntity;
@@ -50,8 +51,8 @@ public class UserController {
     }
 
     @PutMapping("/{idx}")
-    public ResponseEntity<Void> changeUserName(@PathVariable("idx") String idx, final String name) {
-        userService.changeUserName(idx, name);
+    public ResponseEntity<Void> changeUserName(@PathVariable("idx") String idx, @RequestBody UserNameReqDto userNameReqDto) {
+        userService.changeUserName(idx, userNameReqDto);
         return ResponseEntity.ok().build();
     }
 
