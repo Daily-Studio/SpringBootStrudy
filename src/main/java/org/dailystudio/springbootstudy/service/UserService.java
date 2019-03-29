@@ -17,6 +17,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    @Transactional
     public void save(UserSaveReqDto userSaveReqDto) {
         User user = userSaveReqDto.toEntity();
         userRepository.save(user);
