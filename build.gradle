@@ -22,8 +22,10 @@ repositories {
 }
 
 dependencies {
+	implementation('io.springfox:springfox-swagger2:+')
+	implementation('io.springfox:springfox-swagger-ui:+')
+	
+	compile "org.projectlombok:lombok:+"
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	compileOnly 'org.projectlombok:lombok:+'
-	annotationProcessor 'org.projectlombok:lombok:+'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

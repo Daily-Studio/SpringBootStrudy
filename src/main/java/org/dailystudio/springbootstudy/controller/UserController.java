@@ -1,38 +1,23 @@
 package org.dailystudio.springbootstudy.controller;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.dailystudio.springbootstudy.dto.UserReqDto;
-import org.dailystudio.springbootstudy.dto.UserResDto;
+import org.dailystudio.springbootstudy.dto.user.UserInfoResDto;
+import org.dailystudio.springbootstudy.dto.user.UserSaveReqDto;
 import org.dailystudio.springbootstudy.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /*
-RestFul한 API란 무엇인가?
-하나의 URI는 반드시 그에 상응하는 데이터를 나타내는 구조이다.
-
-예를 들어
-/api/user/1/name 로 접근하는 경우
-'1번' '유저'의 '이름' 대한 데이터를 나타낸다.
-
-@RestController = @Controller + @ResponseBody 이다.
-기존에 @Controller를 사용했을 때는 뷰를 반환하였지만
-@RestController를 사용하면 데이터만 반환하게 된다.
-이러한 데이터는 JSON형태로 반환된다.
-
-우리는 RestFul API를 구현할 때 반환값으로 ResponseEntity를 이용할 것이다.
-ResponseEntity를 이용하게 되면
-서버에서 직접
-
-1. 상태코드              --> OK(200), NOT_FOUND(404)...
-2. HttpHeader           --> Content-type : JSON(application/json)...
-3. 응답 메세지           --> 요청에 대한 응답 값
-
-를 지정해서 클라이언트에게 보내줄 수 있다.
+    UserService의 메소드는 현재 깡통이야.
+    디비와 연결을 하지 않았기 때문에 실제로 불러오는 값이 존재하지않아.
+    이번 소스코드에서는 swagger의 기능들을 살펴보고 넘어가자.
  */
+
 @RestController
 @RequestMapping("api/user")
 @RequiredArgsConstructor
@@ -40,10 +25,40 @@ public class UserController {
 
     private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<UserResDto> getUserName(@RequestBody UserReqDto userReqDto) {
-        //UserReqDto userReqDto = userService.getUserInfo(userReqDto);
-        //return ResponseEntity.ok().body(userReqDto);
-        return ResponseEntity.ok().body(userService.getUserInfo(userReqDto));
+    @ApiOperation(value = "유저 정보 저장하기",
+            notes = "유저 정보를 저장합니다.")
+    @ApiResponses(value = {
+            @ApiResponse(code = 201, message = "유저 저장 성공"),
+            @ApiResponse(code = 500, message = "서버에러")
+    })
+    @PostMapping("/save")
+    public ResponseEntity<Void> saveUser(@RequestBody UserSaveReqDto userSaveReqDto) {
+        userService.save(userSaveReqDto);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<UserInfoResDto>> getAllUser() {
+        List<UserInfoResDto> resDtos = userService.getAll();
+        return ResponseEntity.ok().body(resDtos);
+    }
+
+    @GetMapping("/{idx}")
+    public ResponseEntity<UserInfoResDto> getUserInfo(@PathVariable("idx") String idx) {
+        UserInfoResDto userInfoResDto = userService.findUserByIdx(idx);
+        return ResponseEntity.ok().body(userInfoResDto);
+    }
+
+    @PutMapping("/{idx}")
+    public ResponseEntity<Void> changeUserName(@PathVariable("idx") String idx, final String name) {
+        userService.changeUserName(idx, name);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/{idx}")
+    public ResponseEntity<Void> deleteUser(@PathVariable("idx") String idx) {
+        userService.deleteUser(idx);
+        return ResponseEntity.ok().build();
+
     }
 }
