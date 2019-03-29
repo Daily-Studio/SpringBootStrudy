@@ -53,8 +53,13 @@ public class UserService {
         Long userIdx = Long.valueOf(idx);
         //유저 정보를 수정하는 과정
         User user = userRepository.findByUserIdx(userIdx);
-//        userRepository.updateUserName(userIdx, name);
+        //쿼리를 작성하는 방법
+        //userRepository.updateUserName(userIdx, name);
+
+        //Setter를 이용한 방법
         user.setName(name);
+
+        //더 나은 방법은 없을까?
     }
 
     @Transactional
