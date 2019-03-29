@@ -38,4 +38,8 @@ public class User {
         this.userPass = userPass;
         this.userPhone = userPhone;
     }
+
+    public void setName(String name) {
+        this.userName = name;
+    }
 }

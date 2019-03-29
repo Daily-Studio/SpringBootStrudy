@@ -52,7 +52,9 @@ public class UserService {
     public void changeUserName(String idx, String name) {
         Long userIdx = Long.valueOf(idx);
         //유저 정보를 수정하는 과정
-        userRepository.updateUserName(userIdx, name);
+        User user = userRepository.findByUserIdx(userIdx);
+//        userRepository.updateUserName(userIdx, name);
+        user.setName(name);
     }
 
     @Transactional
