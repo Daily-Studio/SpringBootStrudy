@@ -1,28 +1,29 @@
 package org.dailystudio.springbootstudy.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "team")
 @Getter
+@NoArgsConstructor
 public class Team {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "teamIdx")
-    private Long teamIdx;
+    private Long id;
 
-    @Column
-    private String teamName;
+    private String name;
 
-    //@JoinColumn(name = "teamIdx")  //순환참조 문제가 발생한다.
     @OneToMany(mappedBy = "team")
-    @JsonBackReference
-    private List<User> users = new ArrayList<>();
+    private List<User> users;
 
+    @Builder
+    public Team(String name) {
+        this.name = name;
+    }
 }

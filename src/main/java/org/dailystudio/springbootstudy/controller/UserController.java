@@ -4,14 +4,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.dailystudio.springbootstudy.dto.user.UserInfoResDto;
-import org.dailystudio.springbootstudy.dto.user.UserNameReqDto;
 import org.dailystudio.springbootstudy.dto.user.UserSaveReqDto;
 import org.dailystudio.springbootstudy.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 /*
     UserService의 메소드는 현재 깡통이야.
@@ -38,28 +37,5 @@ public class UserController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping
-    public ResponseEntity<List<UserInfoResDto>> getAllUser() {
-        List<UserInfoResDto> resDtos = userService.getAll();
-        return ResponseEntity.ok().body(resDtos);
-    }
 
-    @GetMapping("/{idx}")
-    public ResponseEntity<UserInfoResDto> getUserInfo(@PathVariable("idx") String idx) {
-        UserInfoResDto userInfoResDto = userService.findUserByIdx(idx);
-        return ResponseEntity.ok().body(userInfoResDto);
-    }
-
-    @PutMapping("/{idx}")
-    public ResponseEntity<Void> changeUserName(@PathVariable("idx") String idx, @RequestBody UserNameReqDto userNameReqDto) {
-        userService.changeUserName(idx, userNameReqDto);
-        return ResponseEntity.ok().build();
-    }
-
-    @DeleteMapping("/{idx}")
-    public ResponseEntity<Void> deleteUser(@PathVariable("idx") String idx) {
-        userService.deleteUser(idx);
-        return ResponseEntity.ok().build();
-
-    }
 }
