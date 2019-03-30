@@ -4,12 +4,14 @@ import lombok.RequiredArgsConstructor;
 import org.dailystudio.springbootstudy.domain.Team;
 import org.dailystudio.springbootstudy.dto.team.TeamDeleteReqDto;
 import org.dailystudio.springbootstudy.dto.team.TeamNameChangeReqDto;
+import org.dailystudio.springbootstudy.dto.team.TeamResDto;
 import org.dailystudio.springbootstudy.dto.team.TeamSaveReqDto;
 import org.dailystudio.springbootstudy.repository.TeamRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -18,15 +20,26 @@ public class TeamService {
     private final TeamRepository teamRepository;
 
     @Transactional
-    public void save(TeamSaveReqDto teamSaveReqDto){
+    public void save(TeamSaveReqDto teamSaveReqDto) {
         Team team = teamSaveReqDto.toEntity();
         teamRepository.save(team);
     }
 
     @Transactional(readOnly = true)
-    public List<Team> getTeams(){
+    public List<Team> dontGetTeams() {
         List<Team> teams = teamRepository.findAll();
         return teams;
+    }
+
+    @Transactional(readOnly = true)
+    public List<TeamResDto> getTeams() {
+        List<Team> teams = teamRepository.findAll();
+
+        List<TeamResDto> teamResDtos = teams.stream()
+                .map(team -> team.toDto())
+                .collect(Collectors.toList());
+
+        return teamResDtos;
     }
 
     @Transactional

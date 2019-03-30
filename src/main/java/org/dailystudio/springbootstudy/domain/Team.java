@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.dailystudio.springbootstudy.dto.team.TeamNameChangeReqDto;
+import org.dailystudio.springbootstudy.dto.team.TeamResDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -31,7 +32,20 @@ public class Team {
         this.name = name;
     }
 
+    public Team(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
     public void changeName(TeamNameChangeReqDto teamNameChangeReqDto) {
         this.name = teamNameChangeReqDto.getName();
+    }
+
+    public static Team getBasic(){
+        return new Team(1L,"기본팀");
+    }
+
+    public TeamResDto toDto(){
+        return new TeamResDto(this);
     }
 }
