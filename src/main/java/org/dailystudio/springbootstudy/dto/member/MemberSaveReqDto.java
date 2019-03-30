@@ -1,17 +1,17 @@
-package org.dailystudio.springbootstudy.dto.user;
+package org.dailystudio.springbootstudy.dto.member;
 
 import lombok.Getter;
 import org.dailystudio.springbootstudy.domain.Team;
-import org.dailystudio.springbootstudy.domain.User;
+import org.dailystudio.springbootstudy.domain.Member;
 
 @Getter
-public class UserSaveReqDto {
+public class MemberSaveReqDto {
     private String userEmail;
     private String userName;
     private String userPass;
 
-    public User toEntity(Team team){
-        return User.builder()
+    public Member toEntity(Team team){
+        return Member.builder()
                 .team(team)
                 .email(this.userEmail)
                 .name(this.userName)

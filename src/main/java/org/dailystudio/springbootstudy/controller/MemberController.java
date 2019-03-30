@@ -4,8 +4,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.dailystudio.springbootstudy.dto.user.UserSaveReqDto;
-import org.dailystudio.springbootstudy.service.UserService;
+import org.dailystudio.springbootstudy.dto.member.MemberSaveReqDto;
+import org.dailystudio.springbootstudy.service.MemberService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("api/user")
 @RequiredArgsConstructor
-public class UserController {
+public class MemberController {
 
-    private final UserService userService;
+    private final MemberService memberService;
 
     @ApiOperation(value = "유저 정보 저장하기",
             notes = "유저 정보를 저장합니다.")
@@ -32,8 +32,8 @@ public class UserController {
             @ApiResponse(code = 500, message = "서버에러")
     })
     @PostMapping("/save")
-    public ResponseEntity<Void> saveUser(@RequestBody UserSaveReqDto userSaveReqDto) {
-        userService.save(userSaveReqDto);
+    public ResponseEntity<Void> saveUser(@RequestBody MemberSaveReqDto memberSaveReqDto) {
+        memberService.save(memberSaveReqDto);
         return ResponseEntity.ok().build();
     }
 

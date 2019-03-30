@@ -1,7 +1,9 @@
 package org.dailystudio.springbootstudy.dto.team;
 
+import lombok.Getter;
 import org.dailystudio.springbootstudy.domain.Team;
 
+@Getter
 public class TeamSaveReqDto {
 
     private String teamName;
