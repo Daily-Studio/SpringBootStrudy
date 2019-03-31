@@ -16,6 +16,6 @@ public class ParentDto {
     public ParentDto(Parent parent){
         this.id=parent.getId();
         this.name=parent.getName();
-        this.children=parent.getChildren();
+//        this.children=parent.getChildren();
     }
 }
