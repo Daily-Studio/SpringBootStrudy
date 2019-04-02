@@ -22,8 +22,8 @@ public class Parent {
     @NotNull
     private String name;
 
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "parent_id")
-//    private List<Child> children = new ArrayList<>();
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "parent_id")
+    private List<Child> children = new ArrayList<>();
 
 }
