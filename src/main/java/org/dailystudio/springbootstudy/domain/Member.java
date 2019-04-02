@@ -33,10 +33,10 @@ public class Member {
     private Team team;
 
     @Builder
-    public Member(String email, String name, String pass, Team team){
-        this.email=email;
-        this.name=name;
-        this.pass=pass;
-        this.team=team;
+    public Member(String email, String name, String pass, Team team) {
+        this.email = email;
+        this.name = name;
+        this.pass = pass;
+        this.team = team;
     }
 }

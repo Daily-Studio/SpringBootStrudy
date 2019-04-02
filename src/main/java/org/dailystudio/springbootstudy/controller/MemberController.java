@@ -4,19 +4,13 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import lombok.RequiredArgsConstructor;
-import org.dailystudio.springbootstudy.domain.Member;
 import org.dailystudio.springbootstudy.dto.member.MemberSaveReqDto;
 import org.dailystudio.springbootstudy.service.MemberService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
-
-/*
-    UserService의 메소드는 현재 깡통이야.
-    디비와 연결을 하지 않았기 때문에 실제로 불러오는 값이 존재하지않아.
-    이번 소스코드에서는 swagger의 기능들을 살펴보고 넘어가자.
- */
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("api/user")
