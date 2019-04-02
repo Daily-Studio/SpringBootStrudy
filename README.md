@@ -21,7 +21,8 @@
    - 각종 어노테이션 설명
    - PostMan을 이용한 API 테스트
 
-   **해당 브랜치: week1**
+
+**해당 브랜치: week1**
 
 ## 2주차.
 
@@ -29,7 +30,9 @@
    - PostMan을 대체한다! Swagger!
    - Swagger 환경설정
    - Swagger 어노테이션 사용법 및 예제
-2. MySQL과 JPA연동
+2. Persistance Context
+   - 영속성 컨텍스트란?
+3. MySQL과 JPA연동
    - 데이터베이스 기본 환경설정
    - 로컬 데이터베이스 테스트
    - JPA 개념 설명
@@ -38,3 +41,15 @@
    - JPA 실습
 
 **해당 브랜치: week2-swagger, week2-jpa**
+
+
+
+## 3주차.
+
+1. Junit Test
+   - 테스트 주도 방식으로 개발하자!
+   - 사용법
+2. QueryDSL
+   - 커스텀하고 재사용 가능한 쿼리문을 사용해 보자!
+
+**해당 브랜치: week3-jpa**
