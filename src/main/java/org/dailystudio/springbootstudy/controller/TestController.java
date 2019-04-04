@@ -10,7 +10,7 @@ public class TestController {
     //"api/test"주소로 들어가면 그냥 바로 여기로 들어간다. @GetMapping에 ()아무것도 들어가지 않앗기떄문
     @GetMapping
     public String test() {
-        String str = "호롤롤ㄹ로ㅗ로로로로로ㅗㅗ로로";
+        String str = "Hello world!";
         return str;
     }
 
@@ -21,7 +21,7 @@ public class TestController {
 
     @GetMapping("/path/{parameter}")
     public String pathVariable(@PathVariable("parameter") String output) {
-        return output + "이 왔다데스";
+        return output;
     }
 
     @GetMapping("/path")

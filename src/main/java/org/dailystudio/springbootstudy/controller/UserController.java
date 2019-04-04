@@ -35,12 +35,9 @@ ResponseEntity를 이용하게 되면
  */
 @RestController
 @RequestMapping("api/user")
-@RequiredArgsConstructor //arg가 잇는 것들을 이용해서 생성자를 만든다
-//@RequiredArgsConstructor이걸 안쓰면 밑에처럼 써도 생성해준다.
-//public class UserController (UserSercice userService) { }
+@RequiredArgsConstructor
 public class UserController {
 
-    //@Autowired 써주면 객체 알아서 생성해준다
     private final UserService userService;
 
     @PostMapping
