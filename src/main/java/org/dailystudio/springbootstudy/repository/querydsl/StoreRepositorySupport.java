@@ -1,6 +1,8 @@
 package org.dailystudio.springbootstudy.repository.querydsl;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import org.dailystudio.springbootstudy.domain.QClerk;
+import org.dailystudio.springbootstudy.domain.QStore;
 import org.dailystudio.springbootstudy.domain.Store;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 import org.springframework.stereotype.Repository;
@@ -23,6 +25,16 @@ public class StoreRepositorySupport extends QuerydslRepositorySupport {
         return jpaQueryFactory
                 .selectFrom(store)
                 .where(store.name.eq(name))
+                .fetch();
+    }
+
+    public List<Store> findAllEager(){
+        QStore store = QStore.store;
+        QClerk clerk = QClerk.clerk;
+
+        return from(store)
+                .leftJoin(store.clerks,clerk).fetchJoin()
+                .distinct()
                 .fetch();
     }
 }

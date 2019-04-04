@@ -17,7 +17,7 @@ public class Clerk {
     @NotNull
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY )
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "store_id")
     private Store store;
 }
