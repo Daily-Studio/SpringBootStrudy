@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "store")
@@ -14,6 +16,7 @@ import javax.validation.constraints.NotNull;
 public class Store {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "store_id")
     private Long id;
 
     @NotNull
@@ -21,6 +24,9 @@ public class Store {
 
     @NotNull
     private String phone;
+
+    @OneToMany(mappedBy = "store")
+    private List<Clerk> clerks = new ArrayList<>();
 
     @Builder
     public Store(String name, String phone){

@@ -4,6 +4,7 @@ import org.dailystudio.springbootstudy.domain.Store;
 import org.dailystudio.springbootstudy.repository.StoreRepository;
 import org.dailystudio.springbootstudy.repository.querydsl.StoreRepositorySupport;
 import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,8 @@ public class StoreControllerTest {
     @Autowired
     private StoreRepositorySupport storeRepositorySupport;
 
-    @After
-    public void tearDown() throws Exception {
-        storeRepository.deleteAllInBatch();
-    }
-
-    @Test
-    public void 쿼리디에셀_작동테스트() {
+    @Before
+    public void setUp() throws Exception{
         //given
         String name = "김밥천국";
         String phone = "010-1234-5678";
@@ -39,7 +35,16 @@ public class StoreControllerTest {
         String phone1 = "010-5678-1234";
         storeRepository.save(new Store(name, phone));
         storeRepository.save(new Store(name1, phone1));
+    }
 
+    @After
+    public void tearDown() throws Exception {
+        storeRepository.deleteAllInBatch();
+    }
+
+    @Test
+    public void 쿼리디에셀_작동테스트() {
+        String name = "김밥천국";
         //when
         List<Store> stores = storeRepositorySupport.findByName(name);
 
