@@ -22,8 +22,7 @@ public class Parent {
     @NotNull
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "parent_id")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
     private List<Child> children = new ArrayList<>();
 
 }

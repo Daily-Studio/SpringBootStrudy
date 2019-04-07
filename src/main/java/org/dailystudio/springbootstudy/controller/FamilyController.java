@@ -17,38 +17,22 @@ public class FamilyController {
 
     private final FamilyService familyService;
 
-//    @PostMapping("/mto")
-//    public ResponseEntity<List<Child>> manyToOne(){
-//        //부모저장
-//        familyService.saveParentForManyToOne();
-//        //자식저장
-//        familyService.saveChildForManyToOne();
-//        //자식 불러오기
-//        List<Child> children = familyService.getAllChild();
-//
-//        return ResponseEntity.ok(children);
-//    }
-//
-//    @GetMapping("mto")
-//    public ResponseEntity<List<ChildResDto>> manyToOneLazy(){
-//        //자식 불러오기
-//        List<Child> children = familyService.getAllChild();
-//        List<ChildResDto> childResDtos = children.stream()
-//                .map(child -> new ChildResDto(child))
-//                .collect(Collectors.toList());
-//        return ResponseEntity.ok(childResDtos);
-//    }
-
-    @PostMapping("/otm")
-    public ResponseEntity<Void> oneToMany() {
-        //부모, 자식 저장
-        familyService.saveParentForOneToMany();
+    @PostMapping("/save/parent")
+    public ResponseEntity<Void> saveParent(){
+        familyService.saveParent();
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/otm")
-    public ResponseEntity<ParentDto> oneToManyGet(Long id) {
-        Parent parent = familyService.getParent(id);
-        return ResponseEntity.ok(new ParentDto(parent));
+    @PostMapping("/save/children")
+    public ResponseEntity<Void> saveChildren(){
+        familyService.saveChild();
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/parent")
+    public ResponseEntity<ParentDto> getParent(){
+        Parent parent = familyService.getParent();
+        ParentDto parentDto = new ParentDto(parent);
+        return ResponseEntity.ok(parentDto);
     }
 }

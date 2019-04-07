@@ -17,64 +17,35 @@ public class FamilyService {
     private final ParentRepository parentRepository;
     private final ChildRepository childRepository;
 
-//    @Transactional(readOnly = true)
-//    public List<Child> getAllChild(){
-//        List<Child> children = childRepository.findAll();
-//        return children;
-//    }
-//
-//    @Transactional
-//    public void saveParentForManyToOne() {
-//        Parent parent1 = new Parent();
-//        parent1.setName("부모님1");
-//        Parent parent2 = new Parent();
-//        parent2.setName("부모님2");
-//
-//        parentRepository.save(parent1);
-//        parentRepository.save(parent2);
-//    }
-//
-//    @Transactional
-//    public void saveChildForManyToOne() {
-//        Parent parent1 = parentRepository.getOne(1L);
-//
-//        Child child1 = new Child();
-//        Child child2 = new Child();
-//
-//        child1.setName("자식1");
-//        child1.setParent(parent1);
-//
-//        child2.setName("자식2");
-//        child2.setParent(parent1);
-//
-//        childRepository.save(child1);
-//        childRepository.save(child2);
-//    }
-
-
-    @Transactional(readOnly = true)
-    public Parent getParent(Long id) {
-        Parent parent = parentRepository.getOne(id);
-        return parent;
+    public void saveParent(){
+        Parent parent = new Parent();
+        parent.setName("부모님");
+        parentRepository.save(parent);
     }
 
-    @Transactional
-    public void saveParentForOneToMany() {
-        Parent parent3 = new Parent();
-        parent3.setName("부모님3");
-
+    public void saveChild(){
         Child child1 = new Child();
         Child child2 = new Child();
 
-        child1.setName("자식3");
-        child2.setName("자식4");
+        child1.setName("자식");
+        child2.setName("자식");
 
+        Parent parent = parentRepository.findAll().get(0);
 
-        parent3.getChildren().add(child1);
-        parent3.getChildren().add(child2);
+        child1.setParent(parent);
+        child2.setParent(parent);
 
-        parentRepository.save(parent3);
+        childRepository.save(child1);
+        childRepository.save(child2);
     }
 
+    public Parent getParent(){
+        Parent parent = parentRepository.findAll().get(0);
+        System.out.println("parent id = "+parent.getId());
+        System.out.println("parent name = "+parent.getName());
+
+        System.out.println("parent has "+parent.getChildren().size()+" children.");
+        return parent;
+    }
 
 }
