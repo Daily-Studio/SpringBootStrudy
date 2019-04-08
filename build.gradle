@@ -37,21 +37,23 @@ configurations {
 
 dependencies {
 
-	compile("com.querydsl:querydsl-jpa") // querydsl
-	compile("com.querydsl:querydsl-apt") // querydsl
+    compile("com.querydsl:querydsl-jpa") // querydsl
+    compile("com.querydsl:querydsl-apt") // querydsl
 
-	runtimeOnly('com.h2database:h2')//h2
-	compile("org.springframework.boot:spring-boot-devtools")
+    runtimeOnly('com.h2database:h2')//h2
+    compile("org.springframework.boot:spring-boot-devtools")
 
-	runtimeOnly 'mysql:mysql-connector-java'//mysql
-	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'//jpa
+    runtimeOnly 'mysql:mysql-connector-java'//mysql
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'//jpa
 
-	implementation('io.springfox:springfox-swagger2:+')//swagger
-	implementation('io.springfox:springfox-swagger-ui:+')
+    implementation('io.springfox:springfox-swagger2:+')//swagger
+    implementation('io.springfox:springfox-swagger-ui:+')
 
-	compile "org.projectlombok:lombok:+"//lombok
-	implementation 'org.springframework.boot:spring-boot-starter-web'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    compile "org.projectlombok:lombok:+"//lombok
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation('com.auth0:java-jwt:3.3.0') //jwt
+    compile('org.springframework.boot:spring-boot-starter-aop') // aop
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	testCompile('org.assertj:assertj-core:3.9.0')//test용
 }
