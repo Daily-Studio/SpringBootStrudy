@@ -37,6 +37,7 @@ configurations {
 
 dependencies {
 
+
     compile("com.querydsl:querydsl-jpa") // querydsl
     compile("com.querydsl:querydsl-apt") // querydsl
 
@@ -55,7 +56,10 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-aop') // aop
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	testCompile('org.assertj:assertj-core:3.9.0')//test용
+    implementation('org.springframework.boot:spring-boot-starter-security') //security
+    testImplementation('org.springframework.security:spring-security-test')
+
+    testCompile('org.assertj:assertj-core:3.9.0')//test용
 }
 
 // querydsl 적용
