@@ -15,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Store {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "store_id")
     private Long id;
 
@@ -29,8 +30,8 @@ public class Store {
     private List<Clerk> clerks = new ArrayList<>();
 
     @Builder
-    public Store(String name, String phone){
-        this.name=name;
-        this.phone=phone;
+    public Store(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
     }
 }

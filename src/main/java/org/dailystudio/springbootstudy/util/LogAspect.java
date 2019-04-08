@@ -1,13 +1,10 @@
 package org.dailystudio.springbootstudy.util;
 
-import com.auth0.jwt.interfaces.DecodedJWT;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
-import org.dailystudio.springbootstudy.auth.jwt.JwtFactory;
-import org.dailystudio.springbootstudy.auth.jwt.JwtInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.Ordered;
@@ -67,26 +64,16 @@ public class LogAspect {
     //    public void doSomethingBefore(ProceedingJoinPoint joinPoint){
     //
     //    }
-    @Pointcut("execution(public * org.dailystudio.springbootstudy.controller.StoreController.*(..))")
-    public void controllerClassMethod() {
+    @Pointcut("execution(public * org.dailystudio.springbootstudy.controller.*.*(..))")
+    public void controllerLogMethod() {
     }
 
-    @Before(value = "controllerClassMethod()")
+    @Before(value = "controllerLogMethod()")
     public void logStartController(JoinPoint joinPoint) {
         logger.info("start - " + joinPoint.getSignature().getDeclaringTypeName() + " / " + joinPoint.getSignature().getName());
-        String token = httpServletRequest.getHeader(JwtInfo.HEADER_NAME);
-        if (!JwtFactory.isValid(token)) {
-            throw new RuntimeException();
-        } else {
-            DecodedJWT decodedJWT = JwtFactory.decode(token);
-            logger.info(decodedJWT.getClaims().toString());
-            logger.info("Payload - " + decodedJWT.getPayload());
-            String idx = decodedJWT.getClaim("idx").asString();
-            logger.info("get Claim - " + idx);
-        }
     }
 
-    @After(value = "controllerClassMethod()")
+    @After(value = "controllerLogMethod()")
     public void logEndController(JoinPoint joinPoint) {
         logger.info("finished - " + joinPoint.getSignature().getDeclaringTypeName() + " / " + joinPoint.getSignature().getName());
     }
