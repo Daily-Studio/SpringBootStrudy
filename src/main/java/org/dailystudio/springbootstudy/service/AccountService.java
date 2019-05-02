@@ -32,7 +32,7 @@ public class AccountService {
         return true;
     }
 
-    public ResponseEntity<LogInResDto> SignInAccount(LogInReqDto logInReqDto){
+    public boolean SignInAccount(LogInReqDto logInReqDto){
 
         String email = logInReqDto.getEmail();
         String pass = logInReqDto.getPass();
@@ -43,6 +43,6 @@ public class AccountService {
             return false;
         LogInResDto logInResDto = new LogInResDto(email);
 
-        return logInResDto;
+        return true;
     }
 }

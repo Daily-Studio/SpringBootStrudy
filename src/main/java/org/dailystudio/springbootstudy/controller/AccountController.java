@@ -24,7 +24,8 @@ public class AccountController {
     }
 
     @GetMapping("api/signIn")
-    public ResponseEntity<Void> SignInAccount(@RequestBody LogInReqDto logInReqDto){
-        return accountService.SignInAccount(logInReqDto);
+    public ResponseEntity<Boolean> SignInAccount(@RequestBody LogInReqDto logInReqDto){
+        boolean flag = accountService.SignInAccount(logInReqDto);
+        return ResponseEntity.ok(flag);
     }
 }
