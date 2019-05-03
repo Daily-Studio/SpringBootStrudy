@@ -1,5 +1,6 @@
 package org.dailystudio.springbootstudy.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -17,7 +18,8 @@ public class Account {
     @Column(name = "ACCOUNT_ID")
     public long id;
 
-    @Column(name = "ACCOUNT_EMAIL", nullable = false) //unique = true 라는 조건을 주면 동일한 이메일을 가진 애들이 디비에 들어가는걸 방지하겠다는거임.
+    @Column(name = "ACCOUNT_EMAIL", nullable = false, unique = true)
+    //unique = true 라는 조건을 주면 동일한 이메일을 가진 애들이 디비에 들어가는걸 방지하겠다는거임.
     //프라이머리 키는 아니지만 그래도 중복값은 존재하면 안되므로.
     public String email;
 
@@ -26,6 +28,12 @@ public class Account {
 
     @Column(name = "ACCOUNT_NAME", nullable = false)
     public String name;
+
+    public Account(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+    }
 }
 
 //내장디비 들어가는 주소
