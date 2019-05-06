@@ -4,8 +4,12 @@ import lombok.Getter;
 import org.dailystudio.springbootstudy.domain.Account;
 
 @Getter
-public class AccountSaveReqDto {
+public class AccountReqDto {
     private String email;
     private String password;
-    private String name;
+
+    public AccountReqDto(Account account){
+        this.email = account.getEmail();
+        this.password = account.getPassword();
+    }
 }

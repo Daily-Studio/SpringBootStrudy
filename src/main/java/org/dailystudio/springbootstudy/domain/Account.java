@@ -2,6 +2,7 @@ package org.dailystudio.springbootstudy.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @Table(name="ACCOUNT")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Account {
 
     @Id
@@ -18,20 +20,17 @@ public class Account {
     @Column(name="ACCOUNT_ID")
     private Long id;
 
-    @NotNull
     // 테이블에 이 key는 단일 값을 가져야 함!
-    @Column(name="ACCOUNT_EMAIL", unique = true)
+    @Column(name="ACCOUNT_EMAIL", unique = true, nullable = false)
     private String email;
 
-    @NotNull
-    @Column(name="ACCOUNT_PASS", unique = true)
+    @Column(name="ACCOUNT_PASS", unique = true, nullable = false)
     private String password;
 
-    @NotNull
-    @Column(name="ACCOUNT_NAME", unique = true)
+    @Column(name="ACCOUNT_NAME", unique = true, nullable = false)
     private String name;
 
-    @Builder
+
     public Account(String email, String password, String name){
         this.email = email;
         this.password = password;
