@@ -22,14 +22,12 @@ public class AccountController {
         boolean flag = accountService.signUp(accountSaveReqDto);
         return ResponseEntity.ok(flag);
     }
-    /*
+
     @PostMapping("/login")
     public ResponseEntity<Boolean> logIn(@RequestBody AccountReqDto accountReqDto){
-
-        return ResponseEntity.ok().build();
+        boolean flag = accountService.logIn(accountReqDto);
+        return ResponseEntity.ok(flag);
     }
-
-     */
 
 
 }

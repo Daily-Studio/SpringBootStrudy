@@ -32,7 +32,7 @@ public class AccountService {
 
         return true;
     }
-    /*
+
     public Boolean logIn(AccountReqDto accountReqDto){
         String email = accountReqDto.getEmail();
         String password = accountReqDto.getPassword();
@@ -43,6 +43,4 @@ public class AccountService {
         }
         return true;
     }
-
-     */
 }
