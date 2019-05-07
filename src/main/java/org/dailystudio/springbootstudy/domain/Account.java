@@ -7,8 +7,8 @@ import javax.persistence.*;
 
 // entity class 라고 함 이걸
 @NoArgsConstructor
-@Entity
 @Table(name = "ACCOUNT")
+@Entity
 @Getter
 public class Account {
 
