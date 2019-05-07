@@ -1,6 +1,7 @@
 package org.dailystudio.springbootstudy.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.dailystudio.springbootstudy.dto.LoginRequestDTO;
 import org.dailystudio.springbootstudy.dto.SignupRequestDTO;
 import org.dailystudio.springbootstudy.service.AccountService;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,11 +19,8 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/login")
-    public HashMap<String, String> postLogin(){
-        HashMap<String,String> result = new HashMap<>();
-        result.put("name","holy");
-        result.put("family","shit signup");
-
+    public HashMap<String, String> postLogin(@RequestBody LoginRequestDTO loginRequestDTO){
+        HashMap<String,String> result = accountService.login(loginRequestDTO);
         return result;
     }
 
