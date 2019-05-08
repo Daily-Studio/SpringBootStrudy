@@ -25,7 +25,7 @@ public class AccountController {
     }
 
 
-    @PostMapping("/sign")
+    @PostMapping("/signUp")
     public ResponseEntity<Boolean> signAccount(@RequestBody AccountSignUpReqDto accountSignUpReqDto) {
 
         boolean flag = accountService.signUp(accountSignUpReqDto);
